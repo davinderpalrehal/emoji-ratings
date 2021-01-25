@@ -30,7 +30,34 @@ box.addEventListener("focusout", function(){
 
 // Write your code here 👇
 
+const emoji = ['🤬', '☹️', '😐', '🙂', '😁']
+let emojiVal
 
+window.addEventListener("keypress", event => {
+    if(document.activeElement === box && event.key >= 1 && event.key <= 5 ) {
+        emojiVal = event.key - 1
+        
+        let counter = 0
+
+        if(emojiVal < 2) {
+            counter = 4
+        }
+        
+        const interval = setInterval(() => {
+            if(counter === emojiVal) {
+                text.textContent = 'You are ' + emoji[emojiVal]
+                clearInterval(interval)
+            }
+            if(emojiVal > counter) {
+                text.textContent = 'You are ' + emoji[counter++]
+            }
+            if(emojiVal < counter) {
+                text.textContent = 'You are ' + emoji[counter--]
+            }
+        }, 200)
+        console.log(emojiVal)
+    }
+})
 
 /*
 
